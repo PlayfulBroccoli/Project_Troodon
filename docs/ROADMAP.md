@@ -1,13 +1,34 @@
 # DinoSupply — Roadmap
 
-What's done and what the next agent should build. The **Home** page and the whole
-base layer (theme, layout, header/footer, WhatsApp FAB, routing, `site.ts` config)
-are complete. Everything below is a placeholder route waiting to be built.
-
 Follow [`DESIGN_SYSTEM.md`](DESIGN_SYSTEM.md) for all UI. Wire brand/contact data
 through `src/config/site.ts`.
 
-## Pages to build
+## Built (2026-07-13)
+
+All primary routes are now implemented, in the solo "I" voice (one person, not a team):
+
+- **Home** — reference page + Testimonials strip (placeholder quotes).
+- **About** (`/about`) — bio scaffold; edit the `me` block in `src/pages/About.tsx`
+  with real details.
+- **Services** (`/services`) — detailed sections + per-service CTA.
+- **Portfolio** (`/portfolio`) — card-glass gallery (placeholder projects).
+- **Pricing** (`/pricing`) — interactive quote calculator + comparison table.
+- **FAQ** (`/faq`) — accordion.
+- **Contact** (`/contact`) — enquiry form (WhatsApp/email, **no backend by design**) +
+  custom booking widget backed by the booking API.
+- **Legal** (`/terms`, `/privacy`) — starter content; review before relying on it.
+- **Booking API** (`server/`) — Express + `node:sqlite`, availability + `POST /api/book`.
+  Email is a stub (logs); set real hours in `server/src/availability.ts`.
+
+## Remaining content / follow-ups
+
+- Replace placeholder **About bio**, **Portfolio projects**, and **Testimonials**.
+- **Booking email** — implement `server/src/email.ts` with a real provider (Resend/nodemailer).
+- Replace placeholder **WhatsApp number and email** in `src/config/site.ts`.
+- **SPA host rewrite** + reverse-proxy `/api` (see README deploy notes).
+- **Analytics** (privacy-friendly) and **SEO/OG tags** per route.
+
+## Original page briefs (for reference)
 
 ### 1. Pricing + Quote calculator (`/pricing`)
 The centerpiece. Pricing is **not fixed** — lead with **"Get a Quote"**, not fixed tiers.

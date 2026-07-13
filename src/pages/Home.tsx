@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { site, whatsappLink } from '../config/site'
 import { CheckIcon, ArrowRightIcon, WhatsAppIcon } from '../components/icons'
+import { Testimonials } from '../components/Testimonials'
 
 /**
  * Home / landing page. This is the ONE reference page for the site.
@@ -29,9 +30,9 @@ const services = [
 ]
 
 const steps = [
-  { n: '1', title: 'Tell us the scope', desc: 'Share your idea via WhatsApp or the enquiry form.' },
+  { n: '1', title: 'Tell me the scope', desc: 'Share your idea via WhatsApp or the enquiry form.' },
   { n: '2', title: 'Get a quote', desc: 'A clear, itemised price — no fixed tiers, no surprises.' },
-  { n: '3', title: 'Book a call', desc: 'We lock the details on a short call, then start building.' },
+  { n: '3', title: 'Book a call', desc: "I'll lock the details on a short call, then start building." },
 ]
 
 export function Home() {
@@ -39,7 +40,7 @@ export function Home() {
     <>
       {/* ---------- Hero ---------- */}
       <section className="mx-auto max-w-3xl px-6 pt-16 pb-14 text-center">
-        <span className="badge mb-5 inline-block">Freelance web studio</span>
+        <span className="badge mb-5 inline-block">Freelance web developer</span>
         <h1 className="mb-4 text-4xl font-bold leading-tight text-gray-900 sm:text-5xl">
           Websites that mean business.
         </h1>
@@ -67,7 +68,7 @@ export function Home() {
       {/* ---------- Services ---------- */}
       <section className="mx-auto max-w-6xl px-6 pb-16">
         <SectionHeading
-          eyebrow="What we build"
+          eyebrow="What I build"
           title="Pick a starting point"
           subtitle="Every project is custom-quoted. These are the shapes most projects take."
         />
@@ -119,6 +120,9 @@ export function Home() {
         </div>
       </section>
 
+      {/* ---------- Testimonials ---------- */}
+      <Testimonials />
+
       {/* ---------- CTA band ---------- */}
       <section className="mx-auto max-w-5xl px-6 pb-20">
         <div className="card-glass overflow-hidden p-8 text-center sm:p-12">
@@ -139,7 +143,7 @@ export function Home() {
               className="btn-whatsapp w-full sm:w-auto"
             >
               <WhatsAppIcon width={18} height={18} />
-              WhatsApp us
+              WhatsApp me
             </a>
           </div>
         </div>

@@ -21,6 +21,7 @@ export const site = {
 
   /** Primary nav — pages the next agent will flesh out. */
   nav: [
+    { key: 'about', label: 'About', href: '/about' },
     { key: 'services', label: 'Services', href: '/services' },
     { key: 'portfolio', label: 'Portfolio', href: '/portfolio' },
     { key: 'pricing', label: 'Pricing', href: '/pricing' },
