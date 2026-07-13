@@ -1,4 +1,4 @@
-# DinoSupply — Roadmap
+# NickBuilds — Roadmap
 
 Follow [`DESIGN_SYSTEM.md`](DESIGN_SYSTEM.md) for all UI. Wire brand/contact data
 through `src/config/site.ts`.

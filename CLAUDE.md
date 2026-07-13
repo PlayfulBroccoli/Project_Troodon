@@ -1,11 +1,11 @@
-# CLAUDE.md — DinoSupply
+# CLAUDE.md — NickBuilds
 
 Guidance for agents working in this repo. Read this first, then
 [`docs/DESIGN_SYSTEM.md`](docs/DESIGN_SYSTEM.md) and [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 ## What this is
 
-Marketing + enquiry site for **DinoSupply** (dinosupply.xyz), a freelance web studio.
+Marketing + enquiry site for **NickBuilds** (nickbuilds.xyz), a freelance web studio.
 Vite + React 19 + TypeScript + Tailwind v4. Client-side SPA (`react-router-dom`).
 
 The **base layer is done**: theme, layout, header/footer, WhatsApp FAB, routing, and

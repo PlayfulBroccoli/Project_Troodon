@@ -1,4 +1,4 @@
-# DinoSupply — Design System
+# NickBuilds — Design System
 
 The look is deliberately modeled on a proven reference site (a clean, modern
 SaaS-style layout). We keep **its structure and feel** but swap the accent from

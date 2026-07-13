@@ -1,5 +1,5 @@
 /**
- * DinoSupply booking API (Express + node:sqlite).
+ * NickBuilds booking API (Express + node:sqlite).
  *
  *   GET  /api/health         → { ok }
  *   GET  /api/availability   → { slots: Slot[] }

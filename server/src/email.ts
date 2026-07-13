@@ -13,7 +13,7 @@ export interface EmailSender {
 }
 
 /** Owner's inbox — set OWNER_EMAIL in the environment to receive notifications. */
-const OWNER_EMAIL = process.env.OWNER_EMAIL ?? 'hello@dinosupply.xyz'
+const OWNER_EMAIL = process.env.OWNER_EMAIL ?? 'hello@nickbuilds.xyz'
 
 function formatWhen(iso: string): string {
   // Display in the configured local time for a human-readable confirmation.

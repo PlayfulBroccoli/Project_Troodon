@@ -4,19 +4,19 @@
  */
 
 export const site = {
-  name: 'DinoSupply',
-  domain: 'dinosupply.xyz',
+  name: 'NickBuilds',
+  domain: 'nickbuilds.xyz',
   tagline: 'Websites that mean business.',
   description:
-    'DinoSupply designs, builds, and hosts fast, modern websites for small businesses — from landing pages to full web apps. Get a quote or book a call.',
+    'NickBuilds designs, builds, and hosts fast, modern websites for small businesses — from landing pages to full web apps. Get a quote or book a call.',
 
   /** Contact — used by the WhatsApp button and enquiry form. */
   contact: {
     // International format, digits only (no +, spaces, or dashes). Update to the real number.
     whatsapp: '60123456789',
-    email: 'hello@dinosupply.xyz',
+    email: 'hello@nickbuilds.xyz',
     // Prefilled message for the WhatsApp deep link.
-    whatsappMessage: "Hi DinoSupply! I'd like to talk about a website project.",
+    whatsappMessage: "Hi NickBuilds! I'd like to talk about a website project.",
   },
 
   /** Primary nav — pages the next agent will flesh out. */

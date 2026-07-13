@@ -1,6 +1,6 @@
-# DinoSupply
+# NickBuilds
 
-Marketing + enquiry website for **DinoSupply** (dinosupply.xyz) — a one-person
+Marketing + enquiry website for **NickBuilds** (nickbuilds.xyz) — a one-person
 freelance web developer who designs, builds, and hosts websites for small businesses.
 
 Built with **Vite + React 19 + TypeScript + Tailwind CSS v4**.
