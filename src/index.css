@@ -1,0 +1,63 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   DinoSupply Design System — Tailwind v4 theme tokens
+   Same glassmorphism style as the reference site (Aimy), but
+   the brand accent is TURQUOISE instead of blue.
+   Next agent: use these `brand-*` tokens, never hard-code hex.
+   ============================================================ */
+
+@theme {
+  /* Brand accent — turquoise scale (role-for-role like the ref blue) */
+  --color-brand-50: #f0fbfa;
+  --color-brand-100: #d2f5f1;
+  --color-brand-200: #a8eae3;
+  --color-brand-300: #72d9cf;
+  --color-brand-400: #3cc0b4;
+  --color-brand-500: #17a99c;
+  --color-brand-600: #0d9488; /* primary — buttons, active nav, checks */
+  --color-brand-700: #0c766c;
+  --color-brand-800: #0d5d56;
+  --color-brand-900: #0b4a45;
+
+  /* Typography */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+/* Shared component patterns — the visual language of the site.
+   Keep these in sync with docs/DESIGN_SYSTEM.md. */
+@layer components {
+  /* Glass card with hover-lift (mirrors the reference plan cards) */
+  .card-glass {
+    @apply rounded-2xl border border-gray-200 bg-white/70 backdrop-blur-xl transition-all duration-200;
+  }
+  .card-glass:hover {
+    @apply -translate-y-0.5 shadow-[0_8px_30px_rgba(0,0,0,0.08)];
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-lg bg-brand-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-brand-700;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm font-bold text-gray-700 transition hover:bg-gray-50;
+  }
+  .btn-whatsapp {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-[#25D366] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#1eb955];
+  }
+
+  /* Pill badge (e.g. "Recommended", "Popular") */
+  .badge {
+    @apply rounded-full bg-brand-600 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white;
+  }
+}
