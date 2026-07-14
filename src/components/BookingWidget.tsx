@@ -77,7 +77,7 @@ export function BookingWidget() {
     <div className="card-glass p-6 sm:p-8">
       <h2 className="mb-1 text-lg font-bold text-gray-900">Book a call</h2>
       <p className="mb-4 text-sm text-gray-500">
-        Grab a 20-minute slot to talk through your idea — no obligation.
+        Grab a 20-minute slot to talk through your idea, no obligation.
       </p>
 
       {phase === 'loading' && (
@@ -112,7 +112,7 @@ export function BookingWidget() {
           </div>
           <h3 className="font-bold text-gray-900">You're booked!</h3>
           <p className="mt-1 text-sm text-gray-600">
-            {slot.dateLabel} at {slot.time}. I'll be in touch to confirm — talk soon.
+            {slot.dateLabel} at {slot.time}. I'll be in touch to confirm. Talk soon.
           </p>
         </div>
       )}

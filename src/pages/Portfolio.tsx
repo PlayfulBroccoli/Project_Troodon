@@ -20,24 +20,24 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: 'Sample Café — Business Website',
+    title: 'Sample Café: Business Website',
     blurb:
       'Placeholder. A multi-page site with menu, gallery, and an online booking form for a local café.',
     tags: ['Business site', 'Booking', 'SEO'],
   },
   {
-    title: 'Sample Launch — Landing Page',
+    title: 'Sample Launch: Landing Page',
     blurb:
       'Placeholder. A single high-converting landing page for a product launch, live in three days.',
     tags: ['Landing page', 'Conversion'],
   },
   {
-    title: 'Sample Studio — Portfolio Site',
+    title: 'Sample Studio: Portfolio Site',
     blurb: 'Placeholder. A clean portfolio + enquiry site for a creative studio.',
     tags: ['Portfolio', 'CMS'],
   },
   {
-    title: 'Sample Booking Tool — Web App',
+    title: 'Sample Booking Tool: Web App',
     blurb:
       'Placeholder. A custom booking dashboard with authentication, hosted on the client’s VPS.',
     tags: ['Web app', 'React / Node', 'Auth'],
@@ -135,7 +135,7 @@ export function Portfolio() {
             Your project could be next
           </h2>
           <p className="mx-auto mt-2 max-w-md text-gray-500">
-            Tell me what you have in mind and I'll send an itemised quote — usually within a day.
+            Tell me what you have in mind and I'll send an itemised quote, usually within a day.
           </p>
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link to="/contact" className="btn-primary w-full sm:w-auto">

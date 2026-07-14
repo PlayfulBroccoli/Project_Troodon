@@ -6,6 +6,7 @@ import { Services } from './pages/Services'
 import { Portfolio } from './pages/Portfolio'
 import { FAQ } from './pages/FAQ'
 import { Pricing } from './pages/Pricing'
+import { Quote } from './pages/Quote'
 import { Contact } from './pages/Contact'
 import { Terms, Privacy } from './pages/Legal'
 import { Placeholder } from './pages/Placeholder'
@@ -24,6 +25,7 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/quote" element={<Quote />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/terms" element={<Terms />} />

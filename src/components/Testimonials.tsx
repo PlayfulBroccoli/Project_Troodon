@@ -14,19 +14,19 @@ type Testimonial = {
 const testimonials: Testimonial[] = [
   {
     quote:
-      'Placeholder — swap for a real quote. Fast, communicative, and the site looked exactly how I pictured it. Enquiries went up within a week.',
+      'Placeholder, swap for a real quote. Fast, communicative, and the site looked exactly how I pictured it. Enquiries went up within a week.',
     name: 'Client Name',
     company: 'Local Business',
   },
   {
     quote:
-      'Placeholder — swap for a real quote. Dealing with one person start to finish made everything simple. No jargon, clear pricing.',
+      'Placeholder, swap for a real quote. Dealing with one person start to finish made everything simple. No jargon, clear pricing.',
     name: 'Client Name',
     company: 'Startup',
   },
   {
     quote:
-      'Placeholder — swap for a real quote. Built us a booking system that just works. Would happily recommend.',
+      'Placeholder, swap for a real quote. Built us a booking system that just works. Would happily recommend.',
     name: 'Client Name',
     company: 'Café',
   },
@@ -34,7 +34,7 @@ const testimonials: Testimonial[] = [
 
 export function Testimonials() {
   return (
-    <section className="mx-auto max-w-6xl px-6 pb-16">
+    <section className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
       <div className="mx-auto mb-8 max-w-2xl text-center">
         <div className="mb-2 text-xs font-bold uppercase tracking-wider text-brand-600">
           Testimonials

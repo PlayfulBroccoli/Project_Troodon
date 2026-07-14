@@ -24,7 +24,7 @@ const servicesList: Service[] = [
     title: 'Landing Pages',
     tagline: 'Launch fast',
     blurb:
-      'A single, high-converting page to launch a product, campaign, or event — designed to turn visitors into enquiries.',
+      'A single, high-converting page to launch a product, campaign, or event, designed to turn visitors into enquiries.',
     includes: [
       'Custom design + build',
       'Mobile-first, fast-loading',
@@ -39,7 +39,7 @@ const servicesList: Service[] = [
     title: 'Business Websites',
     tagline: 'Look legit',
     blurb:
-      'A multi-page site with everything a small business needs to build trust and get found — from services to contact and booking.',
+      'A multi-page site with everything a small business needs to build trust and get found, from services to contact and booking.',
     includes: [
       'Up to ~8 pages',
       'Services, About, Contact & more',
@@ -55,7 +55,7 @@ const servicesList: Service[] = [
     title: 'Web Apps',
     tagline: 'Custom tools',
     blurb:
-      'Custom tools, dashboards, and booking systems built on a modern stack — for when a brochure site is not enough.',
+      'Custom tools, dashboards, and booking systems built on a modern stack, for when a brochure site is not enough.',
     includes: [
       'React / Node on a modern stack',
       'Database + user authentication',
@@ -77,7 +77,7 @@ export function Services() {
           What I can build for you
         </h1>
         <p className="mx-auto mb-8 max-w-xl text-lg text-gray-500">
-          Every project is custom-quoted — these are the shapes most take. Not sure which fits?
+          Every project is custom-quoted, and these are the shapes most take. Not sure which fits?
           Tell me the idea and I'll point you the right way.
         </p>
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -158,7 +158,7 @@ export function Services() {
             Not sure what you need?
           </h2>
           <p className="mx-auto mt-2 max-w-md text-gray-500">
-            Send over your idea and I'll recommend the right approach — with an itemised quote,
+            Send over your idea and I'll recommend the right approach, with an itemised quote,
             usually within a day.
           </p>
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">

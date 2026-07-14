@@ -15,11 +15,11 @@ const me = {
   // A short punchy intro for the hero.
   intro:
     "I'm a solo web developer who designs, builds, and hosts fast, modern websites " +
-    'for small businesses — everything from a single landing page to a full web app. ' +
+    'for small businesses, everything from a single landing page to a full web app. ' +
     'You work directly with me, start to finish. No account managers, no hand-offs.',
   // A slightly longer story / background paragraph.
   story:
-    'TODO: A couple of sentences on your background — how you got into building ' +
+    'TODO: A couple of sentences on your background, how you got into building ' +
     'websites, what you enjoy about it, and the kind of clients you like working with.',
   // Things you do / skills to highlight.
   skills: [
@@ -33,7 +33,7 @@ const me = {
   values: [
     {
       title: 'One point of contact',
-      desc: "You talk to the person actually building your site — not a sales team.",
+      desc: "You talk to the person actually building your site, not a sales team.",
     },
     {
       title: 'Honest, itemised pricing',
@@ -125,7 +125,7 @@ export function About() {
             Got a project in mind?
           </h2>
           <p className="mx-auto mt-2 max-w-md text-gray-500">
-            Tell me what you're building and I'll send back an itemised quote — usually within a day.
+            Tell me what you're building and I'll send back an itemised quote, usually within a day.
           </p>
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link to="/contact" className="btn-primary w-full sm:w-auto">

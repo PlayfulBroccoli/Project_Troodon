@@ -1,7 +1,8 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { site, whatsappLink } from '../config/site'
-import { CheckIcon, ArrowRightIcon, WhatsAppIcon, ChevronDownIcon } from '../components/icons'
-import { Testimonials } from '../components/Testimonials'
+import { projectTypes } from '../config/pricing'
+import { CheckIcon, ArrowRightIcon, WhatsAppIcon } from '../components/icons'
 import { Reveal } from '../components/Reveal'
 
 /**
@@ -11,51 +12,105 @@ import { Reveal } from '../components/Reveal'
  * so the next agent can copy patterns rather than invent them.
  */
 
-const services = [
+/**
+ * Home service cards read from the shared `projectTypes` config so their
+ * titles and bullets always match the Pricing page and Quote wizard.
+ */
+const services = projectTypes
+
+const steps = [
   {
-    title: 'Landing Pages',
-    desc: 'A single, high-converting page to launch your product or campaign — fast.',
-    points: ['Design + build', 'Mobile-first', 'Live in days'],
+    n: '1',
+    title: 'Tell me the scope',
+    desc: 'Share your idea over WhatsApp or the enquiry form. Attach links or screenshots of anything that inspires you. The more detail, the better.',
   },
   {
-    title: 'Business Websites',
-    desc: 'Multi-page sites with everything a small business needs to look legit.',
-    points: ['Up to 8 pages', 'Contact + booking', 'SEO basics'],
-    featured: true,
+    n: '2',
+    title: 'I start building',
+    desc: 'I turn your idea into a working prototype so you can see it for real. Completely free, with no commitment.',
   },
   {
-    title: 'Web Apps',
-    desc: 'Custom tools, dashboards, and booking systems built on a modern stack.',
-    points: ['React / Node', 'Database + auth', 'Hosted on your VPS'],
+    n: '3',
+    title: 'Get a quote',
+    desc: 'You get a clear, itemised breakdown of every cost. Nothing hidden, and every price is negotiable.',
+  },
+  {
+    n: '4',
+    title: 'You call the shots',
+    desc: "We lock the details over a call, meeting, or in person. Then you decide if you'd like to proceed, with no pressure.",
+  },
+  {
+    n: '5',
+    title: 'Secure your build',
+    desc: 'A 30% deposit reserves your slot and kicks off the full build.',
+  },
+  {
+    n: '6',
+    title: 'Review & launch',
+    desc: 'You see the finished product and sign off on everything before it goes live.',
   },
 ]
 
-const steps = [
-  { n: '1', title: 'Tell me the scope', desc: 'Share your idea via WhatsApp or the enquiry form.' },
-  { n: '2', title: 'Get a quote', desc: 'A clear, itemised price — no fixed tiers, no surprises.' },
-  { n: '3', title: 'Book a call', desc: "I'll lock the details on a short call, then start building." },
+/**
+ * Example tabs — each shows a real screenshot of a site of that type.
+ * Drop images into src/assets/showcase named <key>.png|jpg|webp and they're
+ * picked up automatically (see `screenshots` below). `url` is the address
+ * shown in the fake browser bar.
+ */
+const examples = [
+  { key: 'landing', tag: 'Landing page', url: 'yourbrand.com' },
+  { key: 'business', tag: 'Business website', url: 'yourbusiness.com' },
+  { key: 'webapp', tag: 'Web app', url: 'app.yourtool.com' },
 ]
+
+/**
+ * Auto-collect any screenshot in src/assets/showcase keyed by filename, e.g.
+ * `business.png` -> screenshots['business']. Add a file and its tab lights up.
+ */
+const screenshotModules = import.meta.glob('../assets/showcase/*.{png,jpg,jpeg,webp}', {
+  eager: true,
+  import: 'default',
+}) as Record<string, string>
+
+const screenshots: Record<string, string> = {}
+for (const [path, src] of Object.entries(screenshotModules)) {
+  const name = path.split('/').pop()!.replace(/\.[^.]+$/, '')
+  screenshots[name] = src
+}
 
 export function Home() {
   return (
     <>
       {/* ---------- Hero ---------- */}
       <section className="relative mx-auto flex min-h-[100svh] max-w-3xl flex-col items-center justify-center px-6 pt-24 pb-28 text-center">
+        {/* Ambient turquoise glow — one soft, centered wash behind the
+            headline so it reinforces the centered layout instead of
+            pulling against it. Pointer-safe, sits below content. */}
+        <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute left-1/2 top-[38%] h-[34rem] w-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-300/10 blur-[120px]" />
+        </div>
+
         <span className="badge hero-in mb-5 inline-block" style={{ animationDelay: '0ms' }}>
           Freelance web developer
         </span>
         <h1
-          className="hero-in mb-4 text-4xl font-bold leading-tight text-gray-900 sm:text-5xl"
+          className="hero-in mb-3 text-4xl font-bold leading-tight text-gray-900 sm:text-5xl"
           style={{ animationDelay: '80ms' }}
         >
           Websites that mean business.
         </h1>
         <p
-          className="hero-in mx-auto mb-8 max-w-xl text-lg text-gray-500"
-          style={{ animationDelay: '160ms' }}
+          className="hero-in mb-5 text-xl font-semibold text-brand-600 sm:text-2xl"
+          style={{ animationDelay: '140ms' }}
         >
-          {site.name} designs, builds, and hosts fast, modern websites for small businesses —
-          from landing pages to full web apps. Priced per project, quoted in minutes.
+          If you can think it, I can build it.
+        </p>
+        <p
+          className="hero-in mx-auto mb-8 max-w-xl text-lg text-gray-500"
+          style={{ animationDelay: '200ms' }}
+        >
+          {site.name} designs, builds, and hosts fast, modern websites for small businesses,
+          from landing pages to full web apps. Priced per project and quoted in minutes.
         </p>
         <div
           className="hero-in flex flex-col items-center justify-center gap-3 sm:flex-row"
@@ -76,17 +131,24 @@ export function Home() {
           </a>
         </div>
 
-        {/* Scroll cue — reuses ChevronDownIcon, no new styling */}
-        <div className="absolute inset-x-0 bottom-6 flex justify-center">
-          <span className="cue-bob flex items-center gap-1 text-xs font-medium uppercase tracking-wider text-gray-400">
-            Scroll
-            <ChevronDownIcon width={16} height={16} />
-          </span>
-        </div>
+        {/* Trust strip — honest promises, true from day one (no track
+            record implied). Reuses CheckIcon + brand accent. */}
+        <ul
+          className="hero-in mt-7 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-gray-600"
+          style={{ animationDelay: '340ms' }}
+        >
+          {['Live in days', 'Fixed quote upfront', 'One developer, start to finish'].map((point) => (
+            <li key={point} className="flex items-center gap-1.5">
+              <CheckIcon className="shrink-0 text-brand-600" width={16} height={16} />
+              {point}
+            </li>
+          ))}
+        </ul>
+
       </section>
 
       {/* ---------- Services ---------- */}
-      <section className="mx-auto max-w-6xl px-6 pb-16">
+      <section className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
         <Reveal>
           <SectionHeading
             eyebrow="What I build"
@@ -96,7 +158,7 @@ export function Home() {
         </Reveal>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {services.map((s, i) => (
-            <Reveal key={s.title} delay={i * 120} className="h-full">
+            <Reveal key={s.key} delay={i * 120} className="h-full">
               <div
                 className={`card-glass relative flex h-full flex-col p-6 ${
                   s.featured ? 'border-brand-500 ring-1 ring-brand-500/20' : ''
@@ -105,13 +167,15 @@ export function Home() {
                 {s.featured && (
                   <div className="badge absolute -top-3 left-1/2 -translate-x-1/2">Most popular</div>
                 )}
-                <h3 className="text-xl font-bold text-gray-900">{s.title}</h3>
+                <h3 className="text-xl font-bold text-gray-900">{s.label}</h3>
                 <p className="mt-1 text-sm text-gray-500">{s.desc}</p>
                 <ul className="mt-4 flex-1 space-y-2.5 border-t border-gray-200 pt-4 text-sm">
                   {s.points.map((p) => (
-                    <li key={p} className="flex items-start gap-2.5">
+                    <li key={p.lead} className="flex items-start gap-2.5">
                       <CheckIcon className="mt-0.5 shrink-0 text-brand-600" width={16} height={16} />
-                      <span className="text-gray-700">{p}</span>
+                      <span className="text-gray-700">
+                        <span className="font-semibold text-gray-900">{p.lead}</span> {p.detail}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -128,58 +192,116 @@ export function Home() {
       </section>
 
       {/* ---------- How it works ---------- */}
-      <section className="mx-auto max-w-5xl px-6 pb-16">
+      <section className="mx-auto max-w-3xl px-6 py-20 sm:py-28">
         <Reveal>
-          <SectionHeading eyebrow="How it works" title="From idea to launch in three steps" />
+          <SectionHeading
+            eyebrow="How it works"
+            title="From idea to launch, step by step"
+            subtitle="A simple, no-pressure process. You only commit once you've seen it working."
+          />
         </Reveal>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <ol className="relative">
+          {/* Vertical connecting line running through the number markers */}
+          <div
+            className="absolute left-5 top-5 bottom-5 w-px bg-gradient-to-b from-brand-500/50 via-brand-500/30 to-transparent"
+            aria-hidden="true"
+          />
           {steps.map((s, i) => (
-            <Reveal key={s.n} delay={i * 120} className="h-full">
-              <div className="card-glass h-full p-6">
-                <div className="mb-3 grid h-10 w-10 place-items-center rounded-full bg-brand-600 text-lg font-bold text-white">
-                  {s.n}
+            <li key={s.n} className="relative pb-10 last:pb-0">
+              <Reveal delay={i * 90}>
+                <div className="flex gap-5">
+                  {/* Number marker */}
+                  <div className="relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand-600 text-lg font-bold text-white ring-4 ring-slate-50">
+                    {s.n}
+                  </div>
+                  {/* Step card */}
+                  <div className="card-glass flex-1 p-5">
+                    <h3 className="font-bold text-gray-900">{s.title}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-gray-500">{s.desc}</p>
+                  </div>
                 </div>
-                <h3 className="font-bold text-gray-900">{s.title}</h3>
-                <p className="mt-1 text-sm text-gray-500">{s.desc}</p>
-              </div>
-            </Reveal>
+              </Reveal>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
-      {/* ---------- Testimonials ---------- */}
+      {/* ---------- Testimonials (hidden until real client quotes exist) ----------
       <Reveal>
         <Testimonials />
       </Reveal>
+      */}
 
-      {/* ---------- CTA band ---------- */}
-      <section className="mx-auto max-w-5xl px-6 pb-20">
+      {/* ---------- Examples (tabbed screenshots) ---------- */}
+      <section className="mx-auto max-w-4xl px-6 py-20 sm:py-28">
         <Reveal>
-        <div className="card-glass overflow-hidden p-8 text-center sm:p-12">
-          <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">
-            Ready to see a quote?
-          </h2>
-          <p className="mx-auto mt-2 max-w-md text-gray-500">
-            Send over your idea and get an itemised price — usually within a day.
-          </p>
-          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link to="/contact" className="btn-primary w-full sm:w-auto">
-              Start an enquiry
-            </Link>
-            <a
-              href={whatsappLink()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-whatsapp w-full sm:w-auto"
-            >
-              <WhatsAppIcon width={18} height={18} />
-              WhatsApp me
-            </a>
-          </div>
-        </div>
+          <SectionHeading eyebrow="Examples" title="Some of my work" />
+        </Reveal>
+        <Reveal>
+          <ExamplesShowcase />
         </Reveal>
       </section>
     </>
+  )
+}
+
+/** Tabbed showcase: pick a project type, see a screenshot in a browser frame. */
+function ExamplesShowcase() {
+  const [active, setActive] = useState(examples[0].key)
+  const current = examples.find((e) => e.key === active)!
+  const shot = screenshots[current.key]
+
+  return (
+    <div>
+      {/* Tabs */}
+      <div className="mb-6 flex flex-wrap justify-center gap-2">
+        {examples.map((ex) => {
+          const on = ex.key === active
+          return (
+            <button
+              key={ex.key}
+              type="button"
+              onClick={() => setActive(ex.key)}
+              aria-pressed={on}
+              className={`rounded-full px-4 py-2 text-sm font-bold transition ${
+                on
+                  ? 'bg-brand-600 text-white'
+                  : 'border border-gray-200 bg-white/60 text-gray-600 hover:border-gray-300'
+              }`}
+            >
+              {ex.tag}
+            </button>
+          )
+        })}
+      </div>
+
+      {/* Browser frame around the screenshot */}
+      <div className="card-glass overflow-hidden">
+        {/* Chrome */}
+        <div className="flex items-center gap-2 border-b border-gray-200 bg-white/70 px-4 py-2.5">
+          <span className="h-3 w-3 rounded-full bg-red-400" />
+          <span className="h-3 w-3 rounded-full bg-yellow-400" />
+          <span className="h-3 w-3 rounded-full bg-green-400" />
+          <div className="ml-3 flex-1 truncate rounded-md bg-gray-100 px-3 py-1 text-center text-xs text-gray-400">
+            {current.url}
+          </div>
+        </div>
+        {/* Screenshot, or placeholder until one is added */}
+        <div className="aspect-[16/10] bg-gradient-to-br from-slate-50 to-brand-50">
+          {shot ? (
+            <img
+              src={shot}
+              alt={`${current.tag} example`}
+              className="h-full w-full object-cover object-top"
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center text-sm text-gray-400">
+              Screenshot coming soon
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
   )
 }
 

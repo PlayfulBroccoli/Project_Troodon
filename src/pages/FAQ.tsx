@@ -11,7 +11,7 @@ import { ChevronDownIcon, WhatsAppIcon } from '../components/icons'
 const faqs: { q: string; a: string }[] = [
   {
     q: 'How much does a website cost?',
-    a: 'Every project is quote-based rather than fixed-tier, so the price depends on scope — number of pages, features like booking or e-commerce, and whether you need hosting. Use the quote calculator for a ballpark estimate, then I send an exact, itemised quote.',
+    a: 'Every project is quote-based rather than fixed-tier, so the price depends on scope: the number of pages, features like booking or e-commerce, and whether you need hosting. Use the quote calculator for a ballpark estimate, then I send an exact, itemised quote.',
   },
   {
     q: 'How long does it take?',
@@ -19,7 +19,7 @@ const faqs: { q: string; a: string }[] = [
   },
   {
     q: 'How many revisions do I get?',
-    a: 'Each project includes rounds of revisions so we can get the details right. The exact number is set in your quote based on scope — the goal is that you are happy with the result, not to nickel-and-dime you on changes.',
+    a: 'Each project includes rounds of revisions so we can get the details right. The exact number is set in your quote based on scope. The goal is that you are happy with the result, not to nickel-and-dime you on changes.',
   },
   {
     q: 'Do you handle hosting and the domain?',
@@ -27,11 +27,11 @@ const faqs: { q: string; a: string }[] = [
   },
   {
     q: 'How does payment work?',
-    a: 'Typically a deposit to get started and the balance on completion, before the site goes live. Larger web-app projects can be split into milestones. Payment terms are laid out clearly in your quote — no hidden fees.',
+    a: 'Typically a deposit to get started and the balance on completion, before the site goes live. Larger web-app projects can be split into milestones. Payment terms are laid out clearly in your quote, with no hidden fees.',
   },
   {
     q: 'What do you need from me to start?',
-    a: 'A rough idea of what you want, any content you already have (text, logo, images), and examples of sites you like. Do not worry if it is not all ready — we sort the details together on a short call.',
+    a: 'A rough idea of what you want, any content you already have (text, logo, images), and examples of sites you like. Do not worry if it is not all ready. We sort the details together on a short call.',
   },
   {
     q: 'Will my site work on mobile and show up on Google?',
@@ -39,7 +39,7 @@ const faqs: { q: string; a: string }[] = [
   },
   {
     q: 'Do you offer ongoing support after launch?',
-    a: 'Yes — I can handle updates, fixes, and hosting on an ongoing basis. Just let me know what you need and I will include a support option in your quote.',
+    a: 'Yes. I can handle updates, fixes, and hosting on an ongoing basis. Just let me know what you need and I will include a support option in your quote.',
   },
 ]
 
@@ -108,7 +108,7 @@ export function FAQ() {
         <div className="card-glass overflow-hidden p-8 text-center sm:p-12">
           <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">Still have a question?</h2>
           <p className="mx-auto mt-2 max-w-md text-gray-500">
-            Message me directly and I'll get back to you — usually the same day.
+            Message me directly and I'll get back to you, usually the same day.
           </p>
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link to="/contact" className="btn-primary w-full sm:w-auto">

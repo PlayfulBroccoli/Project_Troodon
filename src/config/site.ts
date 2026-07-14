@@ -8,7 +8,7 @@ export const site = {
   domain: 'nickbuilds.xyz',
   tagline: 'Websites that mean business.',
   description:
-    'NickBuilds designs, builds, and hosts fast, modern websites for small businesses — from landing pages to full web apps. Get a quote or book a call.',
+    'NickBuilds designs, builds, and hosts fast, modern websites for small businesses, from landing pages to full web apps. Get a quote or book a call.',
 
   /** Contact — used by the WhatsApp button and enquiry form. */
   contact: {
@@ -25,6 +25,7 @@ export const site = {
     { key: 'services', label: 'Services', href: '/services' },
     { key: 'portfolio', label: 'Portfolio', href: '/portfolio' },
     { key: 'pricing', label: 'Pricing', href: '/pricing' },
+    { key: 'quote', label: 'Quote', href: '/quote' },
     { key: 'faq', label: 'FAQ', href: '/faq' },
     { key: 'contact', label: 'Contact', href: '/contact' },
   ],

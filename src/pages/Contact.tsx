@@ -71,7 +71,7 @@ export function Contact() {
           Let's talk about your project
         </h1>
         <p className="mx-auto max-w-xl text-lg text-gray-500">
-          Send an enquiry, message me on WhatsApp, or book a quick call — whatever's easiest. I
+          Send an enquiry, message me on WhatsApp, or book a quick call, whatever's easiest. I
           usually reply the same day.
         </p>
       </section>
@@ -94,7 +94,7 @@ export function Contact() {
                   </div>
                   <h3 className="font-bold text-gray-900">Almost there!</h3>
                   <p className="mt-1 text-sm text-gray-600">
-                    Your details are ready in WhatsApp — just hit send there. Didn't open?{' '}
+                    Your details are ready in WhatsApp, just hit send there. Didn't open?{' '}
                     <a
                       href={whatsappLink(summary())}
                       target="_blank"

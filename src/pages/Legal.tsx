@@ -40,7 +40,7 @@ export function Terms() {
     <LegalLayout title="Terms of Service">
       <p className="text-sm leading-relaxed">
         These terms cover the websites and services provided by {site.name} ({site.domain}). By
-        commissioning a project, you agree to the terms below. This is starter content — please
+        commissioning a project, you agree to the terms below. This is starter content, so please
         adapt it to your business.
       </p>
 
@@ -122,12 +122,12 @@ export function Privacy() {
     <LegalLayout title="Privacy Policy">
       <p className="text-sm leading-relaxed">
         This policy explains how {site.name} ({site.domain}) handles the information you share.
-        This is starter content — please adapt it to your business and local laws.
+        This is starter content, so please adapt it to your business and local laws.
       </p>
 
       <Section heading="1. What I collect">
         <p>
-          When you send an enquiry — via the contact form, WhatsApp, or email — I receive the
+          When you send an enquiry (via the contact form, WhatsApp, or email), I receive the
           details you choose to share, such as your name, email, phone number, and message. I do not
           collect more than needed to respond to you.
         </p>
