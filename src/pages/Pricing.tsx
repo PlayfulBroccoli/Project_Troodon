@@ -74,15 +74,16 @@ export function Pricing() {
           ))}
         </div>
         <p className="mt-8 text-center text-sm text-gray-500">
-          Not sure what you need?{' '}
-          <Link to="/quote" className="font-medium text-brand-600 hover:text-brand-800">
-            Build an instant estimate →
-          </Link>
+          Prices above are the one-off build only. Hosting, SSL and support aren't included, they come
+          with a monthly care plan.{' '}
+          <a href="#care-plans" className="font-medium text-brand-600 hover:text-brand-800">
+            View monthly care plans →
+          </a>
         </p>
       </section>
 
       {/* ---------- Care plans ---------- */}
-      <section className="mx-auto max-w-5xl px-6 py-12 sm:py-16">
+      <section id="care-plans" className="mx-auto max-w-5xl scroll-mt-24 px-6 py-12 sm:py-16">
         <Reveal>
           <div className="mx-auto mb-8 max-w-2xl text-center">
             <div className="mb-2 text-xs font-bold uppercase tracking-wider text-brand-600">
@@ -91,7 +92,7 @@ export function Pricing() {
             <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">Monthly care plans</h2>
             <p className="mt-2 text-gray-500">
               Pick a plan and I keep your site secure, backed up, and up to date, so you can focus on
-              your business. Management and support only. Hosting is billed separately at cost.
+              your business. Managed hosting and a free SSL certificate are included in every plan.
             </p>
           </div>
         </Reveal>

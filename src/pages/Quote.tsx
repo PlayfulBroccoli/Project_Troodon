@@ -30,6 +30,7 @@ export function Quote() {
   const [pages, setPages] = useState(5)
   const [selected, setSelected] = useState<Record<string, boolean>>({})
   const [careKey, setCareKey] = useState('essential')
+  const [hasDomain, setHasDomain] = useState(true)
 
   const type = projectTypes.find((t) => t.key === typeKey)!
   const care = carePlans.find((c) => c.key === careKey)!
@@ -60,16 +61,18 @@ export function Quote() {
     const feats = chosenFeatures.length
       ? chosenFeatures.map((f) => f.label).join(', ')
       : 'none'
-    const careLine =
-      care.monthly > 0 ? `${care.label} at ${money(care.monthly)}/mo` : 'no monthly plan'
+    const careLine = `${care.label} at ${money(care.monthly)}/mo (hosting included)`
+    const domainLine = hasDomain
+      ? 'I have my own domain'
+      : 'Need a domain (charged separately)'
     return (
       `Hi! I built a quote and got:\n` +
       `• Upfront: ${money(breakdown.upfront)}\n` +
-      `• Monthly: ${care.monthly > 0 ? `${money(care.monthly)}/mo` : 'RM 0'}\n\n` +
-      `Project: ${type.label}\nPages: ${pages}\nFeatures: ${feats}\nSupport: ${careLine}\n\n` +
+      `• Monthly: ${money(care.monthly)}/mo\n\n` +
+      `Project: ${type.label}\nPages: ${pages}\nFeatures: ${feats}\nSupport: ${careLine}\nDomain: ${domainLine}\n\n` +
       `I'd like an exact quote please.`
     )
-  }, [type, pages, chosenFeatures, care, breakdown])
+  }, [type, pages, chosenFeatures, care, breakdown, hasDomain])
 
   const isLast = step === STEPS.length - 1
   const next = () => setStep((s) => Math.min(s + 1, STEPS.length - 1))
@@ -233,7 +236,7 @@ export function Quote() {
 
           {/* Step 4 — Support */}
           {step === 3 && (
-            <Step title="Ongoing care?" subtitle="Pick a monthly care plan for management, updates & support. Hosting is separate.">
+            <Step title="Ongoing care?" subtitle="Pick a monthly care plan. Managed hosting and a free SSL certificate are included in every plan.">
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {carePlans.map((c) => {
                   const active = c.key === careKey
@@ -251,13 +254,43 @@ export function Quote() {
                     >
                       <div className="font-bold text-gray-900">{c.label}</div>
                       <div className="mt-1 text-lg font-bold text-brand-600">
-                        {c.monthly === 0 ? 'Free' : `${money(c.monthly)}/mo`}
+                        {money(c.monthly)}/mo
                       </div>
                       <div className="mt-1 text-xs text-gray-500">{c.blurb}</div>
                     </button>
                   )
                 })}
               </div>
+
+              {/* Domain — the one item billed on top of the plan */}
+              <div className="mt-5 border-t border-gray-200 pt-5">
+                <div className="text-sm font-medium text-gray-700">Do you already have a domain?</div>
+                <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  {[
+                    { value: true, title: 'I have a domain', note: 'No extra charge' },
+                    { value: false, title: 'I need one', note: "Charged separately, I'll quote it" },
+                  ].map((opt) => {
+                    const active = hasDomain === opt.value
+                    return (
+                      <button
+                        key={opt.title}
+                        type="button"
+                        onClick={() => setHasDomain(opt.value)}
+                        aria-pressed={active}
+                        className={`flex flex-col rounded-xl border p-4 text-left transition ${
+                          active
+                            ? 'border-brand-500 bg-brand-50 ring-1 ring-brand-500/20'
+                            : 'border-gray-200 bg-white/60 hover:border-gray-300'
+                        }`}
+                      >
+                        <div className="font-bold text-gray-900">{opt.title}</div>
+                        <div className="mt-1 text-xs text-gray-500">{opt.note}</div>
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+
               <p className="mt-4 text-xs text-gray-400">{HOSTING_NOTE}</p>
             </Step>
           )}

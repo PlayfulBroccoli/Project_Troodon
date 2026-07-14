@@ -11,7 +11,7 @@ import { ChevronDownIcon, WhatsAppIcon } from '../components/icons'
 const faqs: { q: string; a: string }[] = [
   {
     q: 'How much does a website cost?',
-    a: 'Every project is quote-based rather than fixed-tier, so the price depends on scope: the number of pages, features like booking or e-commerce, and whether you need hosting. Use the quote calculator for a ballpark estimate, then I send an exact, itemised quote.',
+    a: 'Every project is quote-based rather than fixed-tier, so the price depends on scope: the number of pages and features like booking or e-commerce. There are two parts — a one-off build cost, and a monthly care plan (from RM 200/mo) that includes managed hosting, a free SSL certificate, and ongoing support. Use the quote calculator for a ballpark estimate, then I send an exact, itemised quote.',
   },
   {
     q: 'How long does it take?',
@@ -23,7 +23,7 @@ const faqs: { q: string; a: string }[] = [
   },
   {
     q: 'Do you handle hosting and the domain?',
-    a: 'Yes. I can set up hosting and connect your domain, and maintain the site afterwards. If you already have hosting, I can deploy there instead. Hosting and maintenance can be included in your quote.',
+    a: 'Yes. Managed hosting and a free SSL certificate are included in every care plan — your site lives on my server and I keep it running. The only separate item is the domain: if you already own one I connect it at no charge, and if you do not I register and manage it for a flat RM 80/year.',
   },
   {
     q: 'How does payment work?',

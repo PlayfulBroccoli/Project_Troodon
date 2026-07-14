@@ -86,9 +86,10 @@ export function Terms() {
 
       <Section heading="6. Hosting & maintenance">
         <p>
-          Hosting, domains, and ongoing maintenance are optional and, where included, described in
-          your quote. Uptime and support levels for third-party hosting are subject to those
-          providers.
+          Managed hosting and an SSL certificate are included with an active care plan and cover
+          standard websites. Resource-intensive projects may require a higher plan or dedicated
+          resources, quoted separately. Domains are not included and are charged separately. Uptime
+          and support levels are described in your plan.
         </p>
       </Section>
 

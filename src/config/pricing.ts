@@ -5,7 +5,7 @@
  * Pricing is still quote-based, not fixed tiers — every number here is an
  * ESTIMATE the client confirms after a chat. Two cost dimensions:
  *   - upfront  : one-off build cost (project base + extra pages + features)
- *   - monthly  : recurring care plan (hosting, maintenance, support)
+ *   - monthly  : recurring care plan — INCLUDES hosting, maintenance & support
  *
  * Edit these figures to your real rates. Amounts are in CURRENCY.
  */
@@ -107,25 +107,27 @@ export const features: Feature[] = [
 export type CarePlan = {
   key: string
   label: string
-  /** Recurring monthly SUPPORT fee (does not include hosting — see HOSTING_NOTE). */
+  /** Recurring monthly fee — INCLUDES managed hosting + free SSL (see HOSTING_NOTE). */
   monthly: number
   blurb: string
   includes: string[]
 }
 
 /**
- * Monthly plans are a MANAGEMENT & SUPPORT fee, not hosting. Hosting costs
- * (domain, VPS, etc.) are pass-through and billed separately at cost — see
- * HOSTING_NOTE.
+ * Monthly care plans now BUNDLE hosting: the site lives on my managed server
+ * and every plan includes a free SSL certificate. A live site must be on a
+ * plan — there's no hosting-only tier. The only thing billed separately is a
+ * domain, and only if the client doesn't already own one — see DOMAIN_FEE.
  */
 export const carePlans: CarePlan[] = [
   {
     key: 'essential',
     label: 'Essential Care',
-    monthly: 120,
-    blurb: 'Management & support only.',
+    monthly: 200,
+    blurb: 'Hosting, maintenance & support.',
     includes: [
-      'Hosting & domain renewals managed for you',
+      'Fast, managed hosting on my own server',
+      'Free SSL certificate, always renewed',
       'Automatic backups and security updates',
       'Uptime monitoring so issues get caught early',
       'Up to 5 edits/month',
@@ -135,8 +137,8 @@ export const carePlans: CarePlan[] = [
   {
     key: 'premium',
     label: 'Premium Care',
-    monthly: 200,
-    blurb: 'Management & support only.',
+    monthly: 250,
+    blurb: 'Hosting, maintenance & priority support.',
     includes: [
       'Everything in Essential Care',
       '24/7 priority support with emergency response',
@@ -147,9 +149,9 @@ export const carePlans: CarePlan[] = [
   },
 ]
 
-/** Shown wherever monthly plans appear, so hosting isn't mistaken as included. */
+/** One short caveat line: domains are extra, and hosting only covers standard sites. */
 export const HOSTING_NOTE =
-  "Hosting isn't included in the care plans. I buy and manage the domain, server and SSL for you, then bill the cost on to you. It varies from project to project depending on what your site needs."
+  "Domains aren't included and are charged separately. Care-plan hosting covers standard marketing sites. Resource-intensive projects, like web apps, large media libraries or high-traffic stores, are quoted separately."
 
 /** Comparison table used on the /pricing page. */
 export type ComparisonRow = {
@@ -168,6 +170,7 @@ export const comparisonRows: ComparisonRow[] = [
   { label: 'CMS (edit it yourself)', landing: false, business: true, webapp: true },
   { label: 'Database & user accounts', landing: false, business: false, webapp: true },
   { label: 'Support plan', landing: 'optional', business: 'optional', webapp: 'optional' },
-  { label: 'Hosting', landing: 'at cost', business: 'at cost', webapp: 'at cost' },
+  { label: 'Managed hosting', landing: 'with care plan', business: 'with care plan', webapp: 'quoted separately' },
+  { label: 'Free SSL', landing: true, business: true, webapp: true },
   { label: 'Typical timeline', landing: 'days', business: '1 to 3 weeks', webapp: 'scoped' },
 ]
