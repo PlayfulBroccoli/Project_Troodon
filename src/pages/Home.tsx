@@ -116,7 +116,7 @@ export function Home() {
           className="hero-in flex flex-col items-center justify-center gap-3 sm:flex-row"
           style={{ animationDelay: '240ms' }}
         >
-          <Link to="/contact" className="btn-primary w-full sm:w-auto">
+          <Link to="/quote" className="btn-primary w-full sm:w-auto">
             Get a Quote
             <ArrowRightIcon className="ml-2" width={18} height={18} />
           </Link>
@@ -180,7 +180,7 @@ export function Home() {
                   ))}
                 </ul>
                 <Link
-                  to="/contact"
+                  to="/quote"
                   className={`mt-5 ${s.featured ? 'btn-primary' : 'btn-secondary'} w-full`}
                 >
                   Get a Quote

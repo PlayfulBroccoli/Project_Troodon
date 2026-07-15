@@ -12,10 +12,6 @@ dist
 dist-ssr
 *.local
 
-# Booking API database (local data — do not commit)
-server/*.db
-server/*.db-*
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

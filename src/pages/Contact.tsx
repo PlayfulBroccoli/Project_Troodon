@@ -1,15 +1,14 @@
 import { useState, type FormEvent } from 'react'
 import { site, whatsappLink } from '../config/site'
-import { CheckIcon, WhatsAppIcon } from '../components/icons'
-import { BookingWidget } from '../components/BookingWidget'
+import { CheckIcon } from '../components/icons'
 
 /**
- * Contact & booking page.
+ * Contact page — a single enquiry form, centred.
  *
- * The enquiry form currently has NO backend — on submit it composes a summary
- * and opens WhatsApp (with an email fallback), which works on a static host
- * today. To store leads server-side, wire `submitEnquiry` to a real endpoint
- * (see docs/ROADMAP.md "Backend for the form + booking"). A honeypot field is
+ * The form currently has NO backend — on submit it composes a summary and
+ * opens WhatsApp (with an email fallback), which works on a static host today.
+ * To store leads server-side, wire `submitEnquiry` to a real endpoint (see
+ * docs/ROADMAP.md "Backend for the form + booking"). A honeypot field is
  * already in place for spam protection.
  */
 
@@ -71,189 +70,156 @@ export function Contact() {
           Let's talk about your project
         </h1>
         <p className="mx-auto max-w-xl text-lg text-gray-500">
-          Send an enquiry, message me on WhatsApp, or book a quick call, whatever's easiest. I
-          usually reply the same day.
+          Send an enquiry below and I'll get back with next steps and a quote. I usually reply the
+          same day.
         </p>
       </section>
 
-      {/* ---------- Form + direct contact ---------- */}
-      <section className="mx-auto max-w-6xl px-6 pb-8">
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
-          {/* Enquiry form */}
-          <div className="lg:col-span-3">
-            <div className="card-glass p-6 sm:p-8">
-              <h2 className="mb-1 text-lg font-bold text-gray-900">Send an enquiry</h2>
-              <p className="mb-6 text-sm text-gray-500">
-                Tell me a bit about what you need and I'll get back with next steps and a quote.
-              </p>
+      {/* ---------- Enquiry form ---------- */}
+      <section className="mx-auto max-w-2xl px-6 pb-20">
+        <div className="card-glass p-6 sm:p-8">
+          <h2 className="mb-1 text-lg font-bold text-gray-900">Send an enquiry</h2>
+          <p className="mb-6 text-sm text-gray-500">
+            Tell me a bit about what you need and I'll get back with next steps and a quote.
+          </p>
 
-              {sent ? (
-                <div className="rounded-xl border border-brand-500/30 bg-brand-50 p-6 text-center">
-                  <div className="mx-auto mb-3 grid h-11 w-11 place-items-center rounded-full bg-brand-600 text-white">
-                    <CheckIcon width={22} height={22} />
-                  </div>
-                  <h3 className="font-bold text-gray-900">Almost there!</h3>
-                  <p className="mt-1 text-sm text-gray-600">
-                    Your details are ready in WhatsApp, just hit send there. Didn't open?{' '}
-                    <a
-                      href={whatsappLink(summary())}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-medium text-brand-600 underline hover:text-brand-800"
-                    >
-                      Open WhatsApp
-                    </a>{' '}
-                    or{' '}
-                    <a
-                      href={`mailto:${site.contact.email}?subject=${encodeURIComponent(
-                        'Website enquiry',
-                      )}&body=${encodeURIComponent(summary())}`}
-                      className="font-medium text-brand-600 underline hover:text-brand-800"
-                    >
-                      email instead
-                    </a>
-                    .
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => setSent(false)}
-                    className="btn-secondary mt-5"
+          {sent ? (
+            <div className="rounded-xl border border-brand-500/30 bg-brand-50 p-6 text-center">
+              <div className="mx-auto mb-3 grid h-11 w-11 place-items-center rounded-full bg-brand-600 text-white">
+                <CheckIcon width={22} height={22} />
+              </div>
+              <h3 className="font-bold text-gray-900">Almost there!</h3>
+              <p className="mt-1 text-sm text-gray-600">
+                Your details are ready in WhatsApp, just hit send there. Didn't open?{' '}
+                <a
+                  href={whatsappLink(summary())}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-brand-600 underline hover:text-brand-800"
+                >
+                  Open WhatsApp
+                </a>{' '}
+                or{' '}
+                <a
+                  href={`mailto:${site.contact.email}?subject=${encodeURIComponent(
+                    'Website enquiry',
+                  )}&body=${encodeURIComponent(summary())}`}
+                  className="font-medium text-brand-600 underline hover:text-brand-800"
+                >
+                  email instead
+                </a>
+                .
+              </p>
+              <button
+                type="button"
+                onClick={() => setSent(false)}
+                className="btn-secondary mt-5"
+              >
+                Edit enquiry
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={submitEnquiry} className="space-y-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <Field label="Name" htmlFor="name">
+                  <input
+                    id="name"
+                    required
+                    value={form.name}
+                    onChange={set('name')}
+                    className={inputClass}
+                    placeholder="Your name"
+                  />
+                </Field>
+                <Field label="Email" htmlFor="email">
+                  <input
+                    id="email"
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={set('email')}
+                    className={inputClass}
+                    placeholder="you@example.com"
+                  />
+                </Field>
+              </div>
+
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <Field label="Phone (optional)" htmlFor="phone">
+                  <input
+                    id="phone"
+                    value={form.phone}
+                    onChange={set('phone')}
+                    className={inputClass}
+                    placeholder="+60…"
+                  />
+                </Field>
+                <Field label="Project type" htmlFor="projectType">
+                  <select
+                    id="projectType"
+                    value={form.projectType}
+                    onChange={set('projectType')}
+                    className={inputClass}
                   >
-                    Edit enquiry
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={submitEnquiry} className="space-y-4">
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    <Field label="Name" htmlFor="name">
-                      <input
-                        id="name"
-                        required
-                        value={form.name}
-                        onChange={set('name')}
-                        className={inputClass}
-                        placeholder="Your name"
-                      />
-                    </Field>
-                    <Field label="Email" htmlFor="email">
-                      <input
-                        id="email"
-                        type="email"
-                        required
-                        value={form.email}
-                        onChange={set('email')}
-                        className={inputClass}
-                        placeholder="you@example.com"
-                      />
-                    </Field>
-                  </div>
+                    {projectTypes.map((t) => (
+                      <option key={t}>{t}</option>
+                    ))}
+                  </select>
+                </Field>
+              </div>
 
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    <Field label="Phone (optional)" htmlFor="phone">
-                      <input
-                        id="phone"
-                        value={form.phone}
-                        onChange={set('phone')}
-                        className={inputClass}
-                        placeholder="+60…"
-                      />
-                    </Field>
-                    <Field label="Project type" htmlFor="projectType">
-                      <select
-                        id="projectType"
-                        value={form.projectType}
-                        onChange={set('projectType')}
-                        className={inputClass}
-                      >
-                        {projectTypes.map((t) => (
-                          <option key={t}>{t}</option>
-                        ))}
-                      </select>
-                    </Field>
-                  </div>
+              <Field label="Budget" htmlFor="budget">
+                <select
+                  id="budget"
+                  value={form.budget}
+                  onChange={set('budget')}
+                  className={inputClass}
+                >
+                  {budgets.map((b) => (
+                    <option key={b}>{b}</option>
+                  ))}
+                </select>
+              </Field>
 
-                  <Field label="Budget" htmlFor="budget">
-                    <select
-                      id="budget"
-                      value={form.budget}
-                      onChange={set('budget')}
-                      className={inputClass}
-                    >
-                      {budgets.map((b) => (
-                        <option key={b}>{b}</option>
-                      ))}
-                    </select>
-                  </Field>
+              <Field label="Message" htmlFor="message">
+                <textarea
+                  id="message"
+                  required
+                  rows={5}
+                  value={form.message}
+                  onChange={set('message')}
+                  className={`${inputClass} resize-y`}
+                  placeholder="What are you looking to build?"
+                />
+              </Field>
 
-                  <Field label="Message" htmlFor="message">
-                    <textarea
-                      id="message"
-                      required
-                      rows={5}
-                      value={form.message}
-                      onChange={set('message')}
-                      className={`${inputClass} resize-y`}
-                      placeholder="What are you looking to build?"
-                    />
-                  </Field>
+              {/* Honeypot — visually hidden, off-screen, ignored by real users */}
+              <div className="absolute left-[-9999px]" aria-hidden="true">
+                <label>
+                  Company
+                  <input
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={form.company}
+                    onChange={set('company')}
+                  />
+                </label>
+              </div>
 
-                  {/* Honeypot — visually hidden, off-screen, ignored by real users */}
-                  <div className="absolute left-[-9999px]" aria-hidden="true">
-                    <label>
-                      Company
-                      <input
-                        tabIndex={-1}
-                        autoComplete="off"
-                        value={form.company}
-                        onChange={set('company')}
-                      />
-                    </label>
-                  </div>
-
-                  <button type="submit" className="btn-primary w-full">
-                    Send enquiry
-                  </button>
-                  <p className="text-center text-xs text-gray-400">
-                    This opens WhatsApp with your details prefilled. Prefer email?{' '}
-                    <a
-                      href={`mailto:${site.contact.email}`}
-                      className="text-brand-600 hover:text-brand-800"
-                    >
-                      {site.contact.email}
-                    </a>
-                  </p>
-                </form>
-              )}
-            </div>
-          </div>
-
-          {/* Direct channels + booking */}
-          <div className="space-y-6 lg:col-span-2">
-            <div className="card-glass p-6 sm:p-8">
-              <h2 className="mb-4 text-lg font-bold text-gray-900">Prefer to chat?</h2>
-              <a
-                href={whatsappLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-whatsapp w-full"
-              >
-                <WhatsAppIcon width={18} height={18} />
-                Message on WhatsApp
-              </a>
-              <a
-                href={`mailto:${site.contact.email}`}
-                className="btn-secondary mt-3 w-full"
-              >
-                Email me
-              </a>
-              <p className="mt-4 text-sm text-gray-500">
-                Replies usually within a few hours on weekdays.
+              <button type="submit" className="btn-primary w-full">
+                Send enquiry
+              </button>
+              <p className="text-center text-xs text-gray-400">
+                This opens WhatsApp with your details prefilled. Prefer email?{' '}
+                <a
+                  href={`mailto:${site.contact.email}`}
+                  className="text-brand-600 hover:text-brand-800"
+                >
+                  {site.contact.email}
+                </a>
               </p>
-            </div>
-
-            {/* Booking — custom availability + booking flow backed by /api */}
-            <BookingWidget />
-          </div>
+            </form>
+          )}
         </div>
       </section>
     </>

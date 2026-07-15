@@ -21,7 +21,7 @@ export function Header() {
         {/* Brand */}
         <Link to="/" className="flex shrink-0 items-center gap-2">
           <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-600 text-lg font-black text-white">
-            D
+            {site.name.charAt(0)}
           </span>
           <span className="text-lg font-bold text-gray-900">{site.name}</span>
         </Link>
@@ -33,12 +33,6 @@ export function Header() {
               {l.label}
             </NavLink>
           ))}
-          <Link
-            to="/contact"
-            className="text-sm font-bold text-brand-600 transition hover:text-brand-800"
-          >
-            Get a Quote
-          </Link>
         </div>
 
         {/* Mobile toggle */}
@@ -71,13 +65,6 @@ export function Header() {
                 {l.label}
               </NavLink>
             ))}
-            <Link
-              to="/contact"
-              onClick={() => setOpen(false)}
-              className="py-3 text-base font-bold text-brand-600 hover:text-brand-800"
-            >
-              Get a Quote
-            </Link>
           </div>
         </div>
       )}

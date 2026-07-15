@@ -10,28 +10,24 @@ All primary routes are now implemented, in the solo "I" voice (one person, not a
 - **Home** — reference page + Testimonials strip (placeholder quotes).
 - **About** (`/about`) — bio scaffold; edit the `me` block in `src/pages/About.tsx`
   with real details.
-- **Services** (`/services`) — detailed sections + per-service CTA.
 - **Portfolio** (`/portfolio`) — card-glass gallery (placeholder projects).
 - **Pricing** (`/pricing`) — interactive quote calculator + comparison table.
 - **FAQ** (`/faq`) — accordion.
-- **Contact** (`/contact`) — enquiry form (WhatsApp/email, **no backend by design**) +
-  custom booking widget backed by the booking API.
+- **Contact** (`/contact`) — enquiry form (WhatsApp/email, **no backend by design**).
 - **Legal** (`/terms`, `/privacy`) — starter content; review before relying on it.
-- **Booking API** (`server/`) — Express + `node:sqlite`, availability + `POST /api/book`.
-  Email is a stub (logs); set real hours in `server/src/availability.ts`.
 
 ## Remaining content / follow-ups
 
 - Replace placeholder **About bio**, **Portfolio projects**, and **Testimonials**.
-- **Booking email** — implement `server/src/email.ts` with a real provider (Resend/nodemailer).
 - Replace placeholder **WhatsApp number and email** in `src/config/site.ts`.
-- **SPA host rewrite** + reverse-proxy `/api` (see README deploy notes).
+- **SPA host rewrite** so deep links work (see README deploy notes).
 - **Analytics** (privacy-friendly) and **SEO/OG tags** per route.
 
 ## Original page briefs (for reference)
 
 ### 1. Pricing + Quote calculator (`/pricing`)
-The centerpiece. Pricing is **not fixed** — lead with **"Get a Quote"**, not fixed tiers.
+The centerpiece. Pricing is **not fixed** — lead with **"Get a Quote"** (→ the `/quote`
+calculator), not fixed tiers.
 - An **interactive quote calculator**: user picks project type, number of pages,
   features (booking, e-commerce, CMS, hosting, etc.), and sees an *estimated* range.
 - Make clear it's an estimate; every path ends in a "Get a Quote" / "Book a call" CTA.
@@ -51,25 +47,22 @@ Two enquiry channels, both prominent:
 Gallery of past projects — screenshot/thumbnail, title, short blurb, tags, live link.
 Grid of `.card-glass` items; consider a lightbox or per-project detail route.
 
-### 4. Services (`/services`)
-Expand the three service shapes from Home into detailed sections: what's included,
-typical timeline, and a "Get a Quote" CTA per service.
-
-### 5. FAQ (`/faq`)
+### 4. FAQ (`/faq`)
 Accordion of common questions (scope, timelines, revisions, hosting, payment).
 Match the reference FAQ style.
 
-### 6. Testimonials
+### 5. Testimonials
 Client testimonials — either a dedicated section on Home / Portfolio or its own strip.
 Card with quote, name, company, optional avatar.
 
-### 7. Legal (`/terms`, `/privacy`)
+### 6. Legal (`/terms`, `/privacy`)
 Currently linked in the footer but unbuilt. Add simple content pages.
 
 ## Technical follow-ups
 
-- **Backend for the form + booking.** This is currently a static SPA. Decide: small
-  Node/Express API on the same VPS, or serverless/third-party. Store leads + bookings.
+- **Backend for the enquiry form.** This is currently a static SPA — the form hands
+  off to WhatsApp/email. Decide: small Node/Express API on the same VPS, or
+  serverless/third-party, to store leads.
 - **SPA host rewrite** so deep links work (see README deploy notes).
 - **Analytics** (privacy-friendly) to see which CTAs convert.
 - **SEO/OG tags** per route (currently only global tags in `index.html`).

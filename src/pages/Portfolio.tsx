@@ -138,7 +138,7 @@ export function Portfolio() {
             Tell me what you have in mind and I'll send an itemised quote, usually within a day.
           </p>
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link to="/contact" className="btn-primary w-full sm:w-auto">
+            <Link to="/quote" className="btn-primary w-full sm:w-auto">
               Get a Quote
             </Link>
             <a
