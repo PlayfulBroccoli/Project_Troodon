@@ -1,0 +1,102 @@
+/* Floor/waiter board styles — scoped under .rd (shares the demo palette). */
+
+/* Table cards in the floor grid */
+.rd-tile {
+  position: relative;
+  background: var(--rd-paper);
+  border: 1px solid var(--rd-rule);
+  border-radius: 3px;
+  padding: 0.9rem 1rem;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.rd-tile:hover {
+  border-color: var(--rd-ink-soft);
+}
+.rd-tile--ready {
+  background: rgba(93, 107, 58, 0.1);
+  border-color: var(--rd-olive);
+}
+.rd-tile--seated {
+  background: rgba(201, 154, 46, 0.08);
+  border-color: var(--rd-mustard);
+}
+.rd-tile--served {
+  opacity: 0.7;
+}
+
+.rd-tile-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.rd-tile-num {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--rd-ink);
+}
+.rd-tile-seats {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rd-ink-soft);
+}
+.rd-tile-state {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 0.35rem;
+}
+.rd-tile-state--ready {
+  color: var(--rd-olive);
+}
+.rd-tile-state--cooking {
+  color: var(--rd-mustard);
+}
+.rd-tile-state--seated {
+  color: var(--rd-ink-soft);
+}
+.rd-tile-state--available {
+  color: var(--rd-ink-soft);
+  opacity: 0.6;
+}
+.rd-tile-state--served {
+  color: var(--rd-ink-soft);
+}
+
+/* The big "run food" callout at the top of the floor board */
+.rd-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(93, 107, 58, 0.12);
+  border: 1px solid var(--rd-olive);
+  border-left: 4px solid var(--rd-olive);
+  border-radius: 3px;
+  padding: 0.75rem 1rem;
+}
+.rd-alert--call {
+  background: rgba(189, 74, 38, 0.08);
+  border-color: var(--rd-clay);
+  border-left-color: var(--rd-clay);
+}
+
+/* A small action chip used on tiles */
+.rd-act {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 0.35rem 0.6rem;
+  border-radius: 2px;
+  border: 1px solid currentColor;
+  background: transparent;
+  transition: all 0.15s ease;
+}
+.rd-act:hover {
+  background: var(--rd-ink);
+  color: var(--rd-paper);
+  border-color: var(--rd-ink);
+}

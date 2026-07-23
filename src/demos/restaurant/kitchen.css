@@ -1,0 +1,116 @@
+/* Kitchen board styles — scoped under .rd (shares the demo palette). */
+
+.rd-col {
+  background: rgba(33, 27, 21, 0.03);
+  border: 1px solid var(--rd-rule);
+  border-radius: 3px;
+  padding: 0.85rem;
+  min-height: 12rem;
+}
+.rd-col-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 0.7rem;
+}
+.rd-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.rd-dot--new {
+  background: var(--rd-clay);
+}
+.rd-dot--preparing {
+  background: var(--rd-mustard);
+}
+.rd-dot--ready {
+  background: var(--rd-olive);
+}
+.rd-dot--done {
+  background: var(--rd-ink-soft);
+  opacity: 0.5;
+}
+
+.rd-order {
+  background: var(--rd-paper);
+  border: 1px solid var(--rd-rule);
+  border-left: 3px solid var(--rd-clay);
+  border-radius: 2px;
+  padding: 0.75rem 0.85rem;
+  margin-bottom: 0.6rem;
+}
+.rd-order--preparing {
+  border-left-color: var(--rd-mustard);
+}
+.rd-order--ready {
+  border-left-color: var(--rd-olive);
+}
+.rd-order--done {
+  opacity: 0.55;
+  border-left-color: var(--rd-ink-soft);
+}
+
+.rd-table-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 0.1rem 0.45rem;
+  border-radius: 2px;
+  background: var(--rd-ink);
+  color: var(--rd-paper);
+}
+.rd-table-tag--out {
+  background: var(--rd-ink-soft);
+}
+
+.rd-advance {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--rd-ink);
+  border-radius: 2px;
+  color: var(--rd-ink);
+  background: transparent;
+  transition: all 0.15s ease;
+}
+.rd-advance:hover {
+  background: var(--rd-ink);
+  color: var(--rd-paper);
+}
+.rd-advance:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.rd-86 {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--rd-rule);
+  border-radius: 2px;
+  font-size: 13px;
+  color: var(--rd-ink);
+  background: var(--rd-paper);
+  transition: all 0.15s ease;
+}
+.rd-86:hover {
+  border-color: var(--rd-ink);
+}
+.rd-86--out {
+  background: rgba(189, 74, 38, 0.08);
+  border-color: var(--rd-clay);
+  color: var(--rd-clay);
+  text-decoration: line-through;
+}

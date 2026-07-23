@@ -14,16 +14,25 @@ type Project = {
   title: string
   blurb: string
   tags: string[]
-  href?: string // live link, if public
+  href?: string // live link, if public (external)
+  to?: string // internal demo route (rendered as a <Link>)
   image?: string // optional screenshot path in /public
 }
 
 const projects: Project[] = [
   {
-    title: 'Sample Café: Business Website',
+    title: 'Kuali Kitchen — ordering & live kitchen',
     blurb:
-      'Placeholder. A multi-page site with menu, gallery, and an online booking form for a local café.',
-    tags: ['Business site', 'Booking', 'SEO'],
+      'A two-sided restaurant demo: guests scan a per-table QR to order; the kitchen board fills live in real time, with order statuses and 86-ing dishes that sync back to every menu. No backend — cross-tab sync via BroadcastChannel.',
+    tags: ['Business site', 'Ordering', 'Scan-to-order', 'Live sync', 'React'],
+    to: '/demos/restaurant',
+  },
+  {
+    title: 'Klinik Sri Sentosa — appointment booking',
+    blurb:
+      'A two-sided clinic demo: patients book a slot with a chosen doctor; the reception board fills live as patients check in, get called in, and complete visits. A doctor roster toggles days off that instantly hide their booking slots. No backend — cross-tab sync via BroadcastChannel.',
+    tags: ['Business site', 'Appointments', 'Two-sided', 'Live sync', 'React'],
+    to: '/demos/clinic',
   },
   {
     title: 'Sample Launch: Landing Page',
@@ -111,6 +120,15 @@ export function Portfolio() {
                     </span>
                   ))}
                 </div>
+                {p.to && (
+                  <Link
+                    to={p.to}
+                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-brand-600 transition hover:text-brand-800"
+                  >
+                    View live demo
+                    <ArrowRightIcon width={15} height={15} />
+                  </Link>
+                )}
                 {p.href && (
                   <a
                     href={p.href}

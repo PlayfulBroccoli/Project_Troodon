@@ -1,0 +1,339 @@
+/* ============================================================
+   Klinik Sri Sentosa — clinic demo styles
+   A "calm clinical" aesthetic: airy, soft clinical blue + sage
+   on off-white, thin rules, small-caps mono labels, a faint
+   chart-paper grid. Deliberately NOT the studio's turquoise glass
+   look and NOT the restaurant's warm paper identity — this is a
+   portfolio piece with its own brand. Scoped under `.cl` so it
+   never leaks into the marketing site.
+   ============================================================ */
+
+/* Fonts: a calm transitional serif for display, a humanist sans for UI,
+   and a mono for times / IDs / room numbers. */
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+.cl {
+  /* Palette — soft blue/sage/off-white, medical-trust. */
+  --cl-bg: #eef4f5;
+  --cl-surface: #ffffff;
+  --cl-surface-2: #f3f7f8;
+  --cl-ink: #16313a;
+  --cl-ink-soft: #5b7780;
+  --cl-primary: #2b7185;
+  --cl-primary-deep: #1f5666;
+  --cl-accent: #7ba888;
+  --cl-line: #dde6e7;
+  --cl-warn: #c98a4b;
+  --cl-danger: #b35a4a;
+
+  --cl-font-display: 'Spectral', Georgia, 'Times New Roman', serif;
+  --cl-font-ui: 'Public Sans', ui-sans-serif, system-ui, sans-serif;
+  --cl-font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  background-color: var(--cl-bg);
+  color: var(--cl-ink);
+  font-family: var(--cl-font-ui);
+  position: relative;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Faint chart-paper grid — reads as clinical, not flat. */
+.cl::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  background-image:
+    linear-gradient(var(--cl-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--cl-line) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 30%, transparent 80%);
+}
+.cl > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Typography helpers ---- */
+.cl-display {
+  font-family: var(--cl-font-display);
+  font-optical-sizing: auto;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+.cl-serif {
+  font-family: var(--cl-font-display);
+  font-style: italic;
+  font-weight: 400;
+}
+.cl-mono {
+  font-family: var(--cl-font-mono);
+  font-feature-settings: 'tnum' 1;
+}
+.cl-eyebrow {
+  font-family: var(--cl-font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cl-primary);
+}
+
+/* ---- Buttons ---- */
+.cl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--cl-font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border-radius: 8px;
+  padding: 0.75rem 1.35rem;
+  transition: transform 0.18s ease, background-color 0.18s ease, color 0.18s ease,
+    box-shadow 0.18s ease, border-color 0.18s ease;
+}
+.cl-btn--solid {
+  background: var(--cl-primary);
+  color: #fff;
+}
+.cl-btn--solid:hover {
+  background: var(--cl-primary-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px -8px rgba(43, 113, 133, 0.6);
+}
+.cl-btn--ghost {
+  background: transparent;
+  color: var(--cl-ink);
+  border: 1px solid var(--cl-line);
+}
+.cl-btn--ghost:hover {
+  border-color: var(--cl-primary);
+  color: var(--cl-primary);
+}
+.cl-btn--soft {
+  background: var(--cl-surface);
+  color: var(--cl-ink);
+  border: 1px solid var(--cl-line);
+}
+.cl-btn--soft:hover {
+  border-color: var(--cl-primary);
+}
+
+/* ---- Chips (service / doctor / date / slot) ---- */
+.cl-chip {
+  font-family: var(--cl-font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--cl-line);
+  border-radius: 999px;
+  background: var(--cl-surface);
+  color: var(--cl-ink-soft);
+  transition: all 0.15s ease;
+}
+.cl-chip:hover {
+  border-color: var(--cl-primary);
+  color: var(--cl-primary);
+}
+.cl-chip--on {
+  background: var(--cl-primary);
+  border-color: var(--cl-primary);
+  color: #fff;
+}
+.cl-chip:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+/* ---- Card surfaces ---- */
+.cl-card {
+  background: var(--cl-surface);
+  border: 1px solid var(--cl-line);
+  border-radius: 12px;
+  box-shadow: 0 1px 0 rgba(22, 49, 58, 0.02), 0 12px 24px -20px rgba(22, 49, 58, 0.25);
+}
+.cl-panel {
+  background: var(--cl-surface);
+  border: 1px solid var(--cl-line);
+  border-radius: 10px;
+}
+
+/* ---- Inputs ---- */
+.cl-input,
+.cl-select {
+  width: 100%;
+  font-family: var(--cl-font-ui);
+  font-size: 15px;
+  color: var(--cl-ink);
+  background: var(--cl-surface);
+  border: 1px solid var(--cl-line);
+  border-radius: 8px;
+  padding: 0.7rem 0.85rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.cl-input:focus,
+.cl-select:focus {
+  border-color: var(--cl-primary);
+  box-shadow: 0 0 0 3px rgba(43, 113, 133, 0.14);
+}
+.cl-input::placeholder {
+  color: var(--cl-ink-soft);
+  opacity: 0.6;
+}
+.cl-label {
+  display: block;
+  font-family: var(--cl-font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cl-ink-soft);
+  margin-bottom: 0.4rem;
+}
+
+/* ---- Status dots (reception board / roster) ---- */
+.cl-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cl-ink-soft);
+  flex-shrink: 0;
+}
+.cl-dot--scheduled { background: var(--cl-primary); }
+.cl-dot--arrived { background: var(--cl-warn); }
+.cl-dot--in-room { background: var(--cl-accent); }
+.cl-dot--done { background: #b9c4c7; }
+.cl-dot--no-show { background: var(--cl-danger); }
+.cl-dot--cancelled { background: var(--cl-ink-soft); }
+
+/* ---- Appointment card (reception) ---- */
+.cl-appt {
+  background: var(--cl-surface);
+  border: 1px solid var(--cl-line);
+  border-left: 3px solid var(--cl-line);
+  border-radius: 8px;
+  padding: 0.7rem 0.8rem;
+}
+.cl-appt--scheduled { border-left-color: var(--cl-primary); }
+.cl-appt--arrived { border-left-color: var(--cl-warn); }
+.cl-appt--in-room { border-left-color: var(--cl-accent); }
+.cl-appt--done { border-left-color: #b9c4c7; opacity: 0.7; }
+.cl-appt--no-show { border-left-color: var(--cl-danger); opacity: 0.7; }
+.cl-appt--cancelled { border-left-color: var(--cl-ink-soft); opacity: 0.55; }
+
+/* ---- Alert strip (reception: patients waiting) ---- */
+.cl-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--cl-surface);
+  border: 1px solid var(--cl-line);
+  border-left: 3px solid var(--cl-warn);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+}
+
+/* ---- Small inline action button ---- */
+.cl-act {
+  font-family: var(--cl-font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cl-primary);
+  padding: 0.3rem 0.55rem;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+}
+.cl-act:hover {
+  background: var(--cl-surface-2);
+  border-color: var(--cl-line);
+}
+.cl-act--ghost {
+  color: var(--cl-ink-soft);
+}
+.cl-act--ghost:hover {
+  color: var(--cl-danger);
+}
+
+/* ---- Overlay / centered surface (booking success) ---- */
+.cl-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(22, 49, 58, 0.35);
+  backdrop-filter: blur(2px);
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+.cl-pop {
+  width: 100%;
+  max-width: 26rem;
+  background: var(--cl-surface);
+  border: 1px solid var(--cl-line);
+  border-radius: 16px;
+  box-shadow: 0 30px 60px -25px rgba(22, 49, 58, 0.45);
+  padding: 2rem;
+  text-align: center;
+}
+
+/* ---- Doctor monogram token ---- */
+.cl-monogram {
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  font-family: var(--cl-font-mono);
+  font-weight: 600;
+  color: #fff;
+}
+
+/* ============================================================
+   Motion — calm staggered entrance.
+   ============================================================ */
+@keyframes cl-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.cl-rise {
+  animation: cl-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes cl-pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.cl-pop {
+  animation: cl-pop-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cl-rise,
+  .cl-pop {
+    animation: none;
+  }
+}

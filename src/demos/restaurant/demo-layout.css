@@ -1,0 +1,116 @@
+/* Demo layout — a shared perspective sidebar across all restaurant demo views.
+   Scoped under .rd (shares the demo palette). The sidebar is a fixed left rail
+   on desktop and an off-canvas drawer on mobile. */
+
+.rd-app {
+  display: block;
+}
+.rd-main {
+  min-height: 100vh;
+}
+@media (min-width: 1024px) {
+  .rd-main {
+    padding-left: 15rem; /* 240px — matches the sidebar width */
+  }
+}
+
+/* Sidebar rail */
+.rd-side {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 15rem;
+  border-right: 1px solid var(--rd-rule);
+  background: var(--rd-paper-2);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.rd-side--closed {
+  transform: translateX(-100%);
+}
+@media (min-width: 1024px) {
+  .rd-side,
+  .rd-side--closed {
+    transform: none;
+  }
+}
+
+/* Mobile toggle button (hidden on desktop) */
+.rd-side-toggle {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  width: 2.5rem;
+  border: 1px solid var(--rd-ink);
+  border-radius: 2px;
+  background: var(--rd-paper);
+  color: var(--rd-ink);
+}
+@media (min-width: 1024px) {
+  .rd-side-toggle {
+    display: none;
+  }
+}
+
+.rd-side-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(33, 27, 21, 0.4);
+  z-index: 45;
+}
+@media (min-width: 1024px) {
+  .rd-side-backdrop {
+    display: none;
+  }
+}
+
+/* Sidebar items */
+.rd-side-group {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rd-ink-soft);
+  padding: 0 1.1rem;
+  margin: 1.1rem 0 0.4rem;
+}
+.rd-side-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 0.5rem 1.1rem;
+  border-left: 3px solid transparent;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.rd-side-item:hover {
+  background: rgba(33, 27, 21, 0.04);
+}
+.rd-side-item--active {
+  border-left-color: var(--rd-clay);
+  background: rgba(189, 74, 38, 0.07);
+}
+.rd-side-item-title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--rd-ink);
+  line-height: 1.2;
+}
+.rd-side-item--active .rd-side-item-title {
+  color: var(--rd-clay);
+}
+.rd-side-item-sub {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--rd-ink-soft);
+}

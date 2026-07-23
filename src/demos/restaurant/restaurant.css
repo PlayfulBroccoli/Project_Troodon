@@ -1,0 +1,398 @@
+/* ============================================================
+   Kuali Kitchen — restaurant demo styles
+   A "printed menu" / warm-editorial aesthetic. Deliberately NOT
+   the studio's turquoise glass-card look — this is a portfolio
+   piece with its own brand identity. Scoped under `.rd` so it
+   never leaks into the marketing site.
+   ============================================================ */
+
+/* Fonts: a characterful display serif, a warm grotesk for UI,
+   and a mono for prices / the order slip. */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+.rd {
+  /* Palette — warm paper, espresso ink, clay + olive + mustard. */
+  --rd-paper: #f4ecdd;
+  --rd-paper-2: #efe4d2;
+  --rd-ink: #211b15;
+  --rd-ink-soft: #5b4f42;
+  --rd-rule: #e1d5c1;
+  --rd-clay: #bd4a26;
+  --rd-clay-deep: #9c3a1c;
+  --rd-olive: #5d6b3a;
+  --rd-mustard: #c99a2e;
+
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  background-color: var(--rd-paper);
+  color: var(--rd-ink);
+  font-family: var(--font-ui);
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Paper grain — a faint noise overlay so the surface reads as stock, not flat. */
+.rd::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+.rd > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Typography helpers ---- */
+.rd-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+}
+.rd-italic {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+}
+.rd-mono {
+  font-family: var(--font-mono);
+  font-feature-settings: 'tnum' 1;
+}
+.rd-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rd-clay);
+}
+.rd-rule {
+  border: 0;
+  border-top: 1px solid var(--rd-rule);
+}
+.rd-rule-ink {
+  border: 0;
+  border-top: 1px solid var(--rd-ink);
+}
+
+/* ---- Buttons ---- */
+.rd-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border-radius: 2px;
+  padding: 0.8rem 1.4rem;
+  transition: transform 0.18s ease, background-color 0.18s ease, color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+.rd-btn--solid {
+  background: var(--rd-ink);
+  color: var(--rd-paper);
+}
+.rd-btn--solid:hover {
+  background: var(--rd-clay);
+  transform: translateY(-1px);
+}
+.rd-btn--clay {
+  background: var(--rd-clay);
+  color: #fff;
+}
+.rd-btn--clay:hover {
+  background: var(--rd-clay-deep);
+  transform: translateY(-1px);
+}
+.rd-btn--ghost {
+  background: transparent;
+  color: var(--rd-ink);
+  border: 1px solid var(--rd-ink);
+}
+.rd-btn--ghost:hover {
+  background: var(--rd-ink);
+  color: var(--rd-paper);
+}
+.rd-btn--wa {
+  background: #1f1a16;
+  color: var(--rd-paper);
+}
+.rd-btn--wa:hover {
+  background: #128c3a;
+  transform: translateY(-1px);
+}
+
+/* ---- Chips (category filter, slots, party size) ---- */
+.rd-chip {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--rd-rule);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--rd-ink-soft);
+  transition: all 0.15s ease;
+}
+.rd-chip:hover {
+  border-color: var(--rd-ink);
+  color: var(--rd-ink);
+}
+.rd-chip--on {
+  background: var(--rd-ink);
+  border-color: var(--rd-ink);
+  color: var(--rd-paper);
+}
+
+/* ---- Menu row — printed-menu look ---- */
+.rd-menu-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.75rem;
+  align-items: baseline;
+  padding: 1.1rem 0;
+  border-bottom: 1px dashed var(--rd-rule);
+}
+.rd-menu-num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--rd-ink-soft);
+  min-width: 1.5rem;
+}
+/* Dotted leader between name and price (the classic menu-card device). */
+.rd-menu-leader {
+  position: relative;
+  top: -3px;
+  height: 1px;
+  border-bottom: 1px dotted var(--rd-ink-soft);
+  opacity: 0.4;
+  align-self: end;
+}
+.rd-menu-price {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+/* "Chef's pick" — a rotated stamp. */
+.rd-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rd-mustard);
+  border: 1.5px solid var(--rd-mustard);
+  padding: 0.18rem 0.5rem;
+  border-radius: 2px;
+  transform: rotate(-3deg);
+  background: rgba(201, 154, 46, 0.06);
+}
+.rd-veg-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1px solid var(--rd-olive);
+  display: inline-block;
+}
+
+/* ---- Add / qty controls ---- */
+.rd-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--rd-ink);
+  border-radius: 2px;
+  color: var(--rd-ink);
+  background: transparent;
+  transition: all 0.15s ease;
+}
+.rd-add:hover {
+  background: var(--rd-ink);
+  color: var(--rd-paper);
+}
+.rd-qty {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--rd-ink);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.rd-qty button {
+  width: 1.9rem;
+  height: 1.9rem;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  color: var(--rd-ink);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.rd-qty button:hover {
+  background: var(--rd-ink);
+  color: var(--rd-paper);
+}
+.rd-qty span {
+  min-width: 2rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ---- Inputs (booking) ---- */
+.rd-input,
+.rd-select {
+  width: 100%;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  color: var(--rd-ink);
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid var(--rd-rule);
+  border-radius: 2px;
+  padding: 0.7rem 0.85rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.rd-input:focus,
+.rd-select:focus {
+  border-color: var(--rd-clay);
+  box-shadow: 0 0 0 3px rgba(189, 74, 38, 0.14);
+}
+.rd-input::placeholder {
+  color: var(--rd-ink-soft);
+  opacity: 0.55;
+}
+.rd-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rd-ink-soft);
+  margin-bottom: 0.4rem;
+}
+
+/* ---- Cart drawer / order slip ---- */
+.rd-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(33, 27, 21, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: 50;
+}
+.rd-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100%;
+  max-width: 26rem;
+  background: var(--rd-paper-2);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -20px 0 50px rgba(33, 27, 21, 0.25);
+  transform: translateX(0);
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* Perforated tear-strip at the top — reads as a kitchen ticket. */
+.rd-ticket-top {
+  position: relative;
+  padding: 1.4rem 1.5rem 1rem;
+  border-bottom: 2px dashed var(--rd-rule);
+}
+.rd-ticket-top::before {
+  content: '';
+  position: absolute;
+  left: -0.7rem;
+  right: -0.7rem;
+  top: 1rem;
+  bottom: 1rem;
+  border-left: 2px dashed var(--rd-rule);
+  border-right: 2px dashed var(--rd-rule);
+  pointer-events: none;
+  opacity: 0.7;
+}
+.rd-line {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px dashed var(--rd-rule);
+}
+.rd-total-box {
+  border: 2px solid var(--rd-ink);
+  padding: 0.9rem 1.1rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  background: rgba(33, 27, 21, 0.04);
+}
+
+/* ---- Card / panel surfaces ---- */
+.rd-panel {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--rd-rule);
+  border-radius: 3px;
+}
+
+/* ============================================================
+   Motion — staggered hero entrance + a slow steam wisp.
+   ============================================================ */
+@keyframes rd-rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rd-rise {
+  animation: rd-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes rd-steam {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scaleX(1);
+  }
+  30% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-3rem) scaleX(1.6);
+  }
+}
+.rd-steam {
+  animation: rd-steam 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rd-rise,
+  .rd-steam {
+    animation: none;
+  }
+}

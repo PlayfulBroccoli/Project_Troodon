@@ -1,0 +1,117 @@
+/* Clinic demo layout — a shared perspective sidebar across all clinic demo
+   views. Scoped under .cl (shares the demo palette). The sidebar is a fixed
+   left rail on desktop and an off-canvas drawer on mobile. Mirrors the
+   restaurant demo-layout.css with calm-clinical tokens. */
+
+.cl-app {
+  display: block;
+}
+.cl-main {
+  min-height: 100vh;
+}
+@media (min-width: 1024px) {
+  .cl-main {
+    padding-left: 15rem; /* 240px — matches the sidebar width */
+  }
+}
+
+/* Sidebar rail */
+.cl-side {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 15rem;
+  border-right: 1px solid var(--cl-line);
+  background: var(--cl-surface);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cl-side--closed {
+  transform: translateX(-100%);
+}
+@media (min-width: 1024px) {
+  .cl-side,
+  .cl-side--closed {
+    transform: none;
+  }
+}
+
+/* Mobile toggle button (hidden on desktop) */
+.cl-side-toggle {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  width: 2.5rem;
+  border: 1px solid var(--cl-line);
+  border-radius: 8px;
+  background: var(--cl-surface);
+  color: var(--cl-ink);
+}
+@media (min-width: 1024px) {
+  .cl-side-toggle {
+    display: none;
+  }
+}
+
+.cl-side-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(22, 49, 58, 0.3);
+  z-index: 45;
+}
+@media (min-width: 1024px) {
+  .cl-side-backdrop {
+    display: none;
+  }
+}
+
+/* Sidebar items */
+.cl-side-group {
+  font-family: var(--cl-font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cl-ink-soft);
+  padding: 0 1.1rem;
+  margin: 1.1rem 0 0.4rem;
+}
+.cl-side-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 0.5rem 1.1rem;
+  border-left: 3px solid transparent;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.cl-side-item:hover {
+  background: var(--cl-surface-2);
+}
+.cl-side-item--active {
+  border-left-color: var(--cl-primary);
+  background: rgba(43, 113, 133, 0.07);
+}
+.cl-side-item-title {
+  font-family: var(--cl-font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--cl-ink);
+  line-height: 1.2;
+}
+.cl-side-item--active .cl-side-item-title {
+  color: var(--cl-primary);
+}
+.cl-side-item-sub {
+  font-family: var(--cl-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--cl-ink-soft);
+}
